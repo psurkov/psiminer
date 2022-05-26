@@ -1,0 +1,16 @@
+{
+  "filters": [
+  ],
+  "label": {"name": "dummy"},
+  "storage": {
+    "name": "json tree"
+  },
+
+  "language": "Kotlin",
+  "tree transformations": [
+    {"name": "exclude whitespace"}
+  ],
+
+  "numThreads": 10,
+  "printTrees": false
+}

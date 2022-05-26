@@ -3,6 +3,7 @@ package storage.tree
 import Dataset
 import com.intellij.openapi.project.ProjectManager
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiTreeUtil
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -46,7 +47,8 @@ class JsonTreeStorage(
             nodeToId[it] = nodeToId.size
         }
         return nodeToId.entries.sortedBy { it.value }.map { it.key }.map {
-            val childrenIds = it.children.mapNotNull { child -> nodeToId[child] }
+            val childrenIds = PsiTreeUtil.getChildrenOfTypeAsList(it, PsiElement::class.java)
+                .mapNotNull { child -> nodeToId[child] }
             NodeRepresentation(
                 it.token,
                 it.nodeType,
